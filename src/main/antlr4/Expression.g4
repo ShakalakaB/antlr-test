@@ -13,6 +13,6 @@ SUB: '-';
 // Rules starting with a lowercase letter comprise the parser rules
 expr: expr op=(MUL | DIV) expr   # MulDiv
     | expr op=(ADD | SUB) expr   # AddSub
-    | INT                     # int
-    | '(' expr ')'            # parens
+    | INT                        # int
+    | '(' expr ')'               # parens
     ;

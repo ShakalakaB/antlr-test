@@ -19,18 +19,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitParens(ExpressionParser.ParensContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code MulDiv}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMulDiv(ExpressionParser.MulDivContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code MulDiv}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMulDiv(ExpressionParser.MulDivContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code AddSub}
 	 * labeled alternative in {@link ExpressionParser#expr}.
 	 * @param ctx the parse tree
@@ -42,6 +30,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddSub(ExpressionParser.AddSubContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code MulDiv}
+	 * labeled alternative in {@link ExpressionParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMulDiv(ExpressionParser.MulDivContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MulDiv}
+	 * labeled alternative in {@link ExpressionParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMulDiv(ExpressionParser.MulDivContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code int}
 	 * labeled alternative in {@link ExpressionParser#expr}.

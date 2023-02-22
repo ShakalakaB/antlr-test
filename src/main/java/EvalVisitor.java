@@ -1,8 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
 
 public class EvalVisitor extends ExpressionBaseVisitor<Integer> {
-    Map<String, Integer> memory = new HashMap<String, Integer>();
 
     @Override
     public Integer visitParens(ExpressionParser.ParensContext ctx) {

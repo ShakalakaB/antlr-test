@@ -118,31 +118,6 @@ public class ExpressionParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class AddSubContext extends ExprContext {
-		public Token op;
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ADD() { return getToken(ExpressionParser.ADD, 0); }
-		public TerminalNode SUB() { return getToken(ExpressionParser.SUB, 0); }
-		public AddSubContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).enterAddSub(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitAddSub(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitAddSub(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class MulDivContext extends ExprContext {
 		public Token op;
 		public List<ExprContext> expr() {
@@ -165,6 +140,31 @@ public class ExpressionParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitMulDiv(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class AddSubContext extends ExprContext {
+		public Token op;
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public TerminalNode ADD() { return getToken(ExpressionParser.ADD, 0); }
+		public TerminalNode SUB() { return getToken(ExpressionParser.SUB, 0); }
+		public AddSubContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).enterAddSub(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitAddSub(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitAddSub(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -245,15 +245,15 @@ public class ExpressionParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 					case 1:
 						{
-						_localctx = new AddSubContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new MulDivContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(10);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(11);
-						((AddSubContext)_localctx).op = _input.LT(1);
+						((MulDivContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==ADD || _la==SUB) ) {
-							((AddSubContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==MUL || _la==DIV) ) {
+							((MulDivContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -266,15 +266,15 @@ public class ExpressionParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new MulDivContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new AddSubContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(13);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(14);
-						((MulDivContext)_localctx).op = _input.LT(1);
+						((AddSubContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==MUL || _la==DIV) ) {
-							((MulDivContext)_localctx).op = (Token)_errHandler.recoverInline(this);
+						if ( !(_la==ADD || _la==SUB) ) {
+							((AddSubContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -325,7 +325,7 @@ public class ExpressionParser extends Parser {
 	public static final String _serializedATN =
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13\30\4\2\t\2\3\2"+
 		"\3\2\3\2\3\2\3\2\3\2\5\2\13\n\2\3\2\3\2\3\2\3\2\3\2\3\2\7\2\23\n\2\f\2"+
-		"\16\2\26\13\2\3\2\2\3\2\3\2\2\4\3\2\n\13\3\2\b\t\2\31\2\n\3\2\2\2\4\5"+
+		"\16\2\26\13\2\3\2\2\3\2\3\2\2\4\3\2\b\t\3\2\n\13\2\31\2\n\3\2\2\2\4\5"+
 		"\b\2\1\2\5\13\7\5\2\2\6\7\7\3\2\2\7\b\5\2\2\2\b\t\7\4\2\2\t\13\3\2\2\2"+
 		"\n\4\3\2\2\2\n\6\3\2\2\2\13\24\3\2\2\2\f\r\f\6\2\2\r\16\t\2\2\2\16\23"+
 		"\5\2\2\7\17\20\f\5\2\2\20\21\t\3\2\2\21\23\5\2\2\6\22\f\3\2\2\2\22\17"+

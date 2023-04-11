@@ -17,19 +17,19 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParens(ExpressionParser.ParensContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code AddSub}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAddSub(ExpressionParser.AddSubContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code MulDiv}
 	 * labeled alternative in {@link ExpressionParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDiv(ExpressionParser.MulDivContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AddSub}
+	 * labeled alternative in {@link ExpressionParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddSub(ExpressionParser.AddSubContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code int}
 	 * labeled alternative in {@link ExpressionParser#expr}.
